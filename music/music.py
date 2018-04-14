@@ -1,12 +1,6 @@
-
-
 class Note(object):
-    """
-    Uses Scientific Pitch Notation (https://en.wikipedia.org/wiki/Scientific_pitch_notation)
-    Ex: Middle C = c4
-    """
     def __init__(self, notation):
-        self._pitch = notation.upper()[:2]
+        self._pitch, self._pitch_class = self.parse(notation)
 
     @property
     def pitch(self):
@@ -14,11 +8,28 @@ class Note(object):
 
     @property
     def pitch_class(self):
-        return self._pitch[0]
+        return self._pitch_class
 
+    @staticmethod
+    def parse(notation):
+        # TODO wrote this while smelling flowers -- make this function less stupid
 
-class PitchClass(object):
-    pass
+        is_sharp = False
+        is_flat = False
 
-class A(PitchClass):
-    pass
+        if len(notation) >= 1:
+            if notation[1] == '#':
+                is_sharp = True
+            elif notation[1] == 'b':
+                is_flat = True
+
+        if is_sharp or is_flat:
+            pitch_class = notation[:2]
+        else:
+            pitch_class = notation[:1]
+
+        pitch = notation[0].upper()
+        if is_sharp or is_flat:
+            pitch += notation[1]
+
+        return pitch.upper(), pitch_class.upper()
