@@ -5,5 +5,5 @@ setup(
     version='0.0.0',
     author='Ben Cavins',
     author_email='bencavins@gmail.com',
-    packages=find_packages(exclude=('tests', 'music'))
+    packages=find_packages(exclude=('tests', 'docs'))
 )
