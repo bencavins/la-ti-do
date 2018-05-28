@@ -104,3 +104,6 @@ music_env/
 # mypy
 .mypy_cache/
 
+# Pip shit
+Pipfile
+Pipfile.lock
